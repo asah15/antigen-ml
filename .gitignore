@@ -1,0 +1,44 @@
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+
+# ── Notebooks checkpoints ────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Data — large files not tracked by git ────────────────────────────────────
+# Raw downloads (IEDB bulk export, UniProt FASTAs, etc.)
+data/raw/
+# Processed sequences / labels (regenerate with download_data.py)
+data/processed/dataset.csv
+
+# ── Results — not tracked (reproduce with train.py) ──────────────────────────
+results/best_model.pkl
+results/esm_cache.npy
+results/esm_cache.ids.txt
+
+# Keep example plots for README display — delete this block to also exclude them
+# results/*.png
+# results/summary.csv
+
+# ── OS / editor artefacts ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ── Log files left by install scripts ────────────────────────────────────────
+*.log

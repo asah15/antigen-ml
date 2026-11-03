@@ -1,0 +1,17 @@
+name: antigen-ml
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - numpy>=1.26
+  - pandas>=2.0
+  - scikit-learn>=1.4
+  - xgboost>=2.0
+  - biopython>=1.83
+  - matplotlib>=3.8
+  - pip
+  - pip:
+      # ESM-2 / deep learning — uncomment if needed:
+      # - torch>=2.1
+      # - transformers>=4.40

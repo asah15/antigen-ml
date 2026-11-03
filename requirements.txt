@@ -1,0 +1,21 @@
+# ── Core ML / numerics ───────────────────────────────────────────────────────
+numpy>=1.26
+pandas>=2.0
+scikit-learn>=1.4
+xgboost>=2.0
+
+# ── Bioinformatics ────────────────────────────────────────────────────────────
+biopython>=1.83
+
+# ── Visualisation ────────────────────────────────────────────────────────────
+matplotlib>=3.8
+
+# ── Deep learning / ESM-2 embeddings (optional) ──────────────────────────────
+# Required only when using --features esm in train.py
+# Install separately to avoid forcing GPU dependencies on all users:
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install transformers>=4.40
+#
+# torch>=2.1
+# transformers>=4.40

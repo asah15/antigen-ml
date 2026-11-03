@@ -1,0 +1,3 @@
+model,cv_auc_mean,cv_auc_std,cv_mcc_mean,cv_mcc_std,time_s,test_roc_auc,test_pr_auc,test_mcc,test_f1,test_accuracy,test_balanced_acc,best_threshold
+rf,1.0,0.0,1.0,0.0,7.4,1.0,1.0,1.0,1.0,1.0,1.0,0.2
+xgb,0.9999131567520625,0.0001736864958749251,0.9798155143295281,0.031101463042584456,3.0,1.0,1.0,1.0,1.0,1.0,1.0,0.1
