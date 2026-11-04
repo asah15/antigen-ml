@@ -17,7 +17,7 @@ antigen-ml trains classifiers to discriminate antigenic proteins (recognized by 
 | Classical | AAC, DPC, CTD, physicochemical, structural | 503-dim | No GPU needed |
 | ESM-2 | Pretrained protein language model embeddings | 480–1280-dim | Requires PyTorch + internet |
 
-Both tracks can be combined. The pipeline fetches labeled training data from [IEDB](https://www.iedb.org/) and [UniProt](https://www.uniprot.org/), performs redundancy-aware cross-validation (GroupKFold with MinHash clustering), and outputs a calibrated XGBoost or Random Forest classifier.
+Both tracks can be combined. The pipeline fetches labeled training data from [IEDB](https://www.iedb.org/) and [UniProt](https://www.uniprot.org/), performs redundancy-aware cross-validation (GroupKFold with MinHash clustering), and outputs an XGBoost or Random Forest classifier.
 
 ### Results on the full IEDB + UniProt dataset (n = 3,868)
 
@@ -43,6 +43,8 @@ Dataset: 3,868 proteins (1,883 antigenic, 1,985 non-antigenic); redundancy-aware
 antigen-ml/
 ├── train.py                  # Main training script
 ├── predict.py                # Inference on new FASTA sequences
+├── analysis/
+│   └── stratified_analysis.py  # Per-organism / structure / length breakdown
 ├── requirements.txt          # Python dependencies
 ├── LICENSE
 ├── README.md
@@ -60,7 +62,9 @@ antigen-ml/
 │   ├── raw/                  # Downloaded IEDB CSVs and UniProt FASTAs (not tracked)
 │   └── processed/            # dataset.csv built by download_data.py (not tracked)
 │
-└── results/                  # Model weights, plots, summary (best_model.pkl not tracked)
+├── results/                  # Model weights, plots, summary (best_model.pkl not tracked)
+│   └── supplementary/        # Stratified-performance CSVs (S1, S2)
+└── ...
 ```
 
 ---
@@ -217,13 +221,13 @@ python train.py \
 python predict.py \
     --fasta my_proteins.fasta \
     --model results/best_model.pkl \
-    --threshold 0.40 \
+    --threshold 0.50 \
     --out predictions.tsv
 ```
 
 #### Threshold guidance
 
-The default threshold is 0.50. For the XGBoost + classical model, threshold **0.40** maximizes MCC on the held-out test set. Use the value printed during training (`best-thr=X.XX`) for the model you saved.
+The default threshold is 0.50. On the held-out test set, MCC is maximised at **0.55** for the classical XGBoost model and **0.50** for the ESM-2 + classical model. Use the value printed during training (`best-thr=X.XX`) for the model you saved; note that a threshold tuned on the test set is optimistic, so fix it on a validation split for real use.
 
 #### Output columns
 
@@ -254,7 +258,7 @@ The default threshold is 0.50. For the XGBoost + classical model, threshold **0.
 |---|---|---|---|
 | Amino acid composition | `aac` | 20 | Fraction of each of the 20 standard amino acids |
 | Dipeptide composition | `dpc` | 400 | Fraction of each of the 400 dipeptide pairs |
-| CTD | `ctd` | 42 | Composition, transition, distribution descriptors (Dubchak 1995) |
+| CTD | `ctd` | 42 | Composition and transition descriptors over 7 property groups (Dubchak 1995) |
 | Physicochemical | `phys` | 13 | MW, charge, pI, GRAVY, aromaticity, instability index, etc. |
 | Structural propensity | `struct` | 28 | Chou-Fasman, Eisenberg hydrophobicity, Vihinen flexibility, Janin surface exposure |
 | ESM-2 embeddings | `esm` | 320–1280 | Mean-pooled last-hidden-state from ESM-2 (Meta AI) |
