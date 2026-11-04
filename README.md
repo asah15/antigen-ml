@@ -19,12 +19,21 @@ antigen-ml trains classifiers to discriminate antigenic proteins (recognized by 
 
 Both tracks can be combined. The pipeline fetches labeled training data from [IEDB](https://www.iedb.org/) and [UniProt](https://www.uniprot.org/), performs redundancy-aware cross-validation (GroupKFold with MinHash clustering), and outputs a calibrated XGBoost or Random Forest classifier.
 
-### Results on the full IEDB + UniProt dataset (n = 3,763)
+### Results on the full IEDB + UniProt dataset (n = 3,868)
 
-| Model | Features | CV AUC | Test AUC | Test MCC | Best threshold |
+Dataset: 3,868 proteins (1,883 antigenic, 1,985 non-antigenic); redundancy-aware 80/20 split (3,001 train / 867 test), seed 42.
+
+| Model | Features | CV ROC-AUC | Test ROC-AUC | Test MCC* | Best thr. |
 |---|---|---|---|---|---|
-| XGBoost | Classical (503-dim) | 0.858 | 0.858 | 0.571 | 0.40 |
-| XGBoost | ESM-2 35M + Classical | ≥0.95 | — | — | — |
+| Logistic regression | Classical (503-dim) | 0.772 | 0.815 | 0.519 | 0.75 |
+| SVM (RBF) | Classical (503-dim) | 0.837 | 0.857 | 0.582 | 0.60 |
+| Random forest | Classical (503-dim) | 0.828 | 0.856 | 0.561 | 0.50 |
+| XGBoost | Classical (503-dim) | 0.842 | 0.857 | 0.603 | 0.55 |
+| XGBoost | ESM-2 35M + Classical | 0.894 | 0.905 | 0.707 | 0.50 |
+
+\*MCC at the MCC-maximising threshold on the held-out test set (optimistic; set the threshold on a validation split in practice).
+
+**Known limitations.** Performance holds across pathogen genera (test ROC-AUC 0.82-0.998 for *T. cruzi*, *P. falciparum*, *M. tuberculosis*, *S. aureus*, *E. coli*, CMV) and predicted structural classes (0.83-0.88), but human self-antigens are essentially undetected (ROC-AUC ~0.49) because the negative set is human-only; do not apply to human targets without a taxonomically matched negative set. Short proteins are harder (ROC-AUC 0.81 vs 0.89 for mid-length).
 
 ---
 
