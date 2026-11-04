@@ -42,3 +42,7 @@ Thumbs.db
 
 # ── Log files left by install scripts ────────────────────────────────────────
 *.log
+
+# ── IEDB bulk export (large, downloaded manually) ────────────────────────────
+bcell_full_v3*.zip
+bcell_full_v3_single_file/

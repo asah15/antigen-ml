@@ -88,11 +88,11 @@ Required only if you use `--features esm` during training.
 ```bash
 # CPU-only PyTorch (smaller download):
 pip install torch --index-url https://download.pytorch.org/whl/cpu
-pip install transformers>=4.40
+pip install "transformers>=4.40"
 
 # GPU (CUDA 12.x):
 pip install torch --index-url https://download.pytorch.org/whl/cu121
-pip install transformers>=4.40
+pip install "transformers>=4.40"
 ```
 
 ---
@@ -111,25 +111,23 @@ The pipeline supports three data modes. **Mode A** (IEDB bulk export) gives the 
 
 ```bash
 python src/download_data.py \
-    --mode A \
     --iedb_csv path/to/bcell_full_v3_single_file/bcell_full_v3.csv \
-    --out_csv data/processed/dataset.csv
+    --out data/processed/dataset.csv
 ```
 
 #### Mode B: UniProt KW-0045 keyword query (~600 antigens, internet only)
 
 ```bash
 python src/download_data.py \
-    --mode B \
-    --out_csv data/processed/dataset.csv
+    --out data/processed/dataset.csv
 ```
 
 #### Mode C: Synthetic demo (no data needed, for testing the pipeline)
 
 ```bash
 python src/download_data.py \
-    --mode C \
-    --out_csv data/processed/dataset.csv
+    --demo \
+    --out data/processed/dataset.csv
 ```
 
 ---
@@ -266,9 +264,8 @@ The default threshold is 0.50. For the XGBoost + classical model, threshold **0.
 ```bash
 # 1. Download IEDB bulk export manually (see Step 1 above), then:
 python src/download_data.py \
-    --mode A \
     --iedb_csv path/to/bcell_full_v3.csv \
-    --out_csv data/processed/dataset.csv
+    --out data/processed/dataset.csv
 
 # 2. Train
 python train.py \
