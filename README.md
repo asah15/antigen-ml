@@ -61,7 +61,7 @@ antigen-ml/
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/<your-username>/antigen-ml.git
+git clone https://github.com/asah15/antigen-ml.git
 cd antigen-ml
 ```
 
