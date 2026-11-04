@@ -2,7 +2,7 @@
 
 A machine-learning pipeline for predicting protein antigenicity from sequence and structural features, with optional ESM-2 protein language model embeddings.
 
-**Author:** Amit Sah — SignorLab, North Dakota State University  
+**Author:** Amit Sah — SignorLab, Department of Biological Sciences, North Dakota State University  
 **Language:** Python 3.10+  
 **License:** MIT
 
