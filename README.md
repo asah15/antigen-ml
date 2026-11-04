@@ -290,7 +290,7 @@ If you use this tool in published work, please cite:
 ```
 Sah, A. (2026). antigen-ml: sequence- and structure-based antigenicity prediction
 using classical and protein language model features. GitHub.
-https://github.com/<your-username>/antigen-ml
+https://github.com/asah15/antigen-ml
 ```
 
 ---
