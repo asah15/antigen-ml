@@ -1,0 +1,9 @@
+organism_mnemonic,organism,antigens_n,roc_auc_vs_negatives,mcc_thr0.5,sensitivity_thr0.5,specificity_thr0.5
+TRYCC,Trypanosoma cruzi,130,0.971,0.727,0.938,0.862
+PLAF7,Plasmodium falciparum,38,0.998,0.587,1.000,0.862
+MYCTU,Mycobacterium tuberculosis,15,0.993,0.424,1.000,0.862
+STAA3,Staphylococcus aureus,6,0.957,0.233,0.833,0.862
+ECO57,Escherichia coli O157,8,0.900,0.234,0.750,0.862
+ONCVO,Onchocerca volvulus,19,0.861,0.276,0.632,0.862
+HCMVM,Human cytomegalovirus,11,0.819,0.182,0.545,0.862
+HUMAN,Human (self-antigens),59,0.494,-0.018,0.119,0.862

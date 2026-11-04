@@ -1,0 +1,7 @@
+stratum_type,stratum,n,pct_antigen,test_roc_auc,mcc_thr0.5,sensitivity_thr0.5,specificity_thr0.5
+structure,alpha-leaning,332,56.0,0.882,0.662,0.790,0.877
+structure,balanced,462,50.2,0.833,0.542,0.677,0.857
+structure,beta-leaning,73,47.9,0.876,0.589,0.743,0.842
+length,short (<=326 aa),291,57.0,0.811,0.483,0.735,0.752
+length,medium (327-575 aa),287,57.5,0.889,0.623,0.770,0.861
+length,long (>575 aa),289,42.2,0.839,0.651,0.664,0.946
